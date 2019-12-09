@@ -1,25 +1,28 @@
 <template>
   <div class="Snake">
+    <h1>SNAKE!</h1>
     <h1
       v-if="hitWall"
     >
       Game Over!
     </h1>
     <h2>Score: {{ score }}</h2>
-    <div
-      ref="board"
-      class="Snake_Board"
-    >
+    <div class="Snake_BoardWrapper">
       <div
-        v-for="bodyPart in snake"
-        :key="bodyPart.id"
-        class="Snake_Board_Body_Part"
-        :style="`top:${bodyPart.y}.px; left:${bodyPart.x}px; color: red`"
-      />
-      <div
-        class="Snake_Board_Food"
-        :style="`top:${foodY}.px; left:${foodX}px; background-color:#${foodColor};`"
-      />
+        ref="board"
+        class="Snake_Board"
+      >
+        <div
+          v-for="bodyPart in snake"
+          :key="bodyPart.id"
+          class="Snake_Board_Body_Part"
+          :style="`top:${bodyPart.y}.px; left:${bodyPart.x}px; color: red`"
+        />
+        <div
+          class="Snake_Board_Food"
+          :style="`top:${foodY}.px; left:${foodX}px; background-color:#${foodColor};`"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -135,11 +138,22 @@ export default {
 <style lang="scss">
   .Snake {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-flow: row wrap;
+    font-weight: bold;
+    text-align: center;
+//    align-items: center;
+//    justify-content: center;
 
-    H1 {
+    H1, H2 {
+      flex: 1 100%;
       display: block;
+    }
+
+    &_BoardWrapper {
+      flex: 1 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     &_Board {
